@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: personal-bookmark-manager
+    env: node
+    buildCommand: cd src && npm install && npm run build && cd ../server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      # Add other env vars as needed

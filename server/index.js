@@ -17,6 +17,12 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/bookmarks', bookmarkRoutes);
 
+// Serve frontend static files
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../dist')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 
 connectDB().then(() => {
   app.listen(PORT, () => {
