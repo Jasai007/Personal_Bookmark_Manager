@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "cd src && npm install && npm run build && cd ..",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "cd server && npm start"
+    "start": "npm start --prefix server"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.51.0",
