@@ -34,7 +34,7 @@ const Dashboard: React.FC = () => {
 
   const fetchBookmarks = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/bookmarks');
+      const response = await axios.get('/api/bookmarks');
       setBookmarks(response.data);
     } catch (error) {
       toast.error('Failed to fetch bookmarks');
@@ -65,7 +65,7 @@ const Dashboard: React.FC = () => {
 
   const handleAddBookmark = async (data: Omit<Bookmark, '_id' | 'created_at'>) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/bookmarks', data);
+      const response = await axios.post('/api/bookmarks', data);
       setBookmarks([response.data, ...bookmarks]);
       setIsFormOpen(false);
       toast.success('Bookmark added successfully!');
@@ -78,7 +78,7 @@ const Dashboard: React.FC = () => {
     if (!editingBookmark) return;
 
     try {
-      const response = await axios.put(`http://localhost:5000/api/bookmarks/${editingBookmark._id}`, data);
+      const response = await axios.put(`/api/bookmarks/${editingBookmark._id}`, data);
       setBookmarks(bookmarks.map(bookmark =>
         bookmark._id === editingBookmark._id ? response.data : bookmark
       ));
@@ -94,7 +94,7 @@ const Dashboard: React.FC = () => {
     if (!window.confirm('Are you sure you want to delete this bookmark?')) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/bookmarks/${_id}`);
+      await axios.delete(`/api/bookmarks/${_id}`);
       setBookmarks(bookmarks.filter(bookmark => bookmark._id !== _id));
       toast.success('Bookmark deleted successfully!');
     } catch (error) {
