@@ -2,7 +2,10 @@ services:
   - type: web
     name: personal-bookmark-manager
     env: node
-    buildCommand: npm install && npm run build && cd server && npm install
+    buildCommand: |
+      npm install
+      npm run build
+      cd server && npm install
     startCommand: npm start
     envVars:
       - key: NODE_ENV
